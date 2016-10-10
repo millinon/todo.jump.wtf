@@ -42,6 +42,10 @@ Route::group(['middleware' => ['web']], function(){
         // delete from a list
         Route::delete('/task/{task}', 'TaskController@delItem');
 
+        Route::post('/togglePublic/{list}', 'TaskListController@togglePublic');
+
+        Route::post('/task/{task}/toggle', 'TaskController@toggleCompletion');
+
     });
 
 });

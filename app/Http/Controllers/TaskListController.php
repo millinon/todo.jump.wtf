@@ -45,7 +45,7 @@ class TaskListController extends Controller
 
     public function addItem(Request $request, TaskList $list){
         $this->validate($request, [
-            'title' => 'required'
+            'title' => ['required', 'max:63']
         ]);
 
         if(Auth::guest() || Auth::user()->id !== $list->user->id){
@@ -69,6 +69,17 @@ class TaskListController extends Controller
         }
 
         $list->delete();
+
+        return Redirect::back();
+    }
+
+    public function togglePublic(Tasklist $list){
+        if(Auth::guest() || Auth::id() != $list->user->id){
+            return 'get outta here';
+        }
+
+        $list->public = !$list->public;
+        $list->save();
 
         return Redirect::back();
     }

@@ -25,4 +25,16 @@ class TaskController extends Controller
 
         return Redirect::back();
     }
+
+    public function toggleCompletion(Task $task){
+
+        if(Auth::guest() || Auth::id() != $task->taskList->user->id){
+            return 'get outta here';
+        }
+
+        $task->complete = !$task->complete;
+        $task->save();
+
+        return Redirect::back();
+    }
 }

@@ -11,10 +11,9 @@
     @else
         <div class="list-group">
             @foreach (Auth::user()->lists as $list)
-                <div class="row">
                     <!--<div class="list-group-item list-group-item-action">-->
-                        <a class="list-group-item list-group-item-action" href="/list/{{$list->id}}">{{ $list->title }}
-                    <div class="text-right">
+                        <a class="list-group-item list-group-item-action" href="/list/{{$list->id}}">
+                    <div class="pull-right">
                         <form action="/list/{{$list->id}}" method="POST">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
@@ -24,8 +23,8 @@
                         </form>
                     <!--</div>-->
                     </div>
+                    <h4>{{ $list->title }}</h4>
                     </a>
-                </div>
             @endforeach
         </div>
     @endif
@@ -51,8 +50,18 @@
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
+
+    @if (count($errors) > 0)
+        <br />
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
 </div>
-
-
 
 @stop
