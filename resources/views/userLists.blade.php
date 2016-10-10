@@ -44,7 +44,7 @@
 
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="public" />
+                <input type="checkbox" name="public" value="1"/>
                 Public to-do list
             </label>
         </div>

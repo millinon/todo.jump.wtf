@@ -36,7 +36,7 @@ class TaskListController extends Controller
         $list = new TaskList();
         $list->title = $request->title;
         $list->user_id = Auth::id();
-        $list->public = isset($request->public) && $request->public == 'yes';
+        $list->public = isset($request->public) && $request->public == '1';
         $list->save();
 
         return Redirect::back();
